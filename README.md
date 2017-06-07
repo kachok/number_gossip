@@ -22,7 +22,7 @@ Playing with numbers and their properties :notebook: :pencil2: :white_flower: (c
 - [ ] Google
 - [x] happy
 - [ ] hungry
-- [ ] lazy caterer
+- [x] lazy caterer
 - [x] lucky
 - [ ] Mersenne
 - [ ] Mersenne prime

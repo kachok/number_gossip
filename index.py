@@ -415,6 +415,40 @@ def test_repunit():
         "not repunit number is repunit")
 
 
+
+'''
+LAZY CATERER
+
+Definition: The n-th lazy caterer number is the maximum number of pieces a (circular) pizza can be cut into with n (straight-line) cuts.
+Unlike the situation with cake, everybody gets the toppings.
+First ten: 2, 4, 7, 11, 16, 22, 29, 37, 46, 56
+There are 140 lazy caterer numbers below 10,000.
+
+Formula: https://en.wikipedia.org/wiki/Lazy_caterer%27s_sequence
+'''
+
+def lazy_caterer(number):
+    """ Returns True if number is lazy_caterer """
+    # n-th lazy caterer number is (n**2 + n + 2) / 2
+
+    n = 1
+    while True:
+        p = (n**2 + n + 2) / 2
+        if p == number:
+            return True
+        elif p > number:
+            return False
+        n = n + 1
+
+def test_lazy_caterer():
+    """ Tests lazy_caterer method """
+    seq([2, 4, 7, 11, 16, 22, 29, 37, 46, 56], lazy_caterer, True,
+        "lazy_caterer number from test sequence is not lazy_caterer")
+    seq([3, 5, 9, 13, 15, 17, 19], lazy_caterer, False,
+        "not lazy_caterer number is lazy_caterer")
+
+
+
 '''
 for numo in range(1001):
     if happy(numo):
