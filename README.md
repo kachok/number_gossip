@@ -29,26 +29,26 @@ Playing with numbers and their properties :notebook: :pencil2: :white_flower: (c
 - [ ] narcissistic
 - [x] odd
 - [x] odious
-- [ ] palindrome
-- [ ] palindromic prime
-- [ ] pentagonal
+- [x] palindrome
+- [x] palindromic prime
+- [x] pentagonal
 - [x] perfect
 - [ ] power of 2
 - [ ] powerful
 - [ ] practical
 - [x] prime
-- [ ] primorial
-- [ ] pronic
+- [x] primorial
+- [x] pronic
 - [x] repunit
 - [ ] Smith
 - [ ] sociable
 - [x] square
 - [ ] square-free
-- [ ] tetrahedral
+- [x] tetrahedral
 - [x] triangular
-- [ ] twin
+- [x] twin
 - [ ] Ulam
-- [ ] undulating
+- [x] undulating
 - [ ] untouchable
 - [ ] vampire
 - [ ] weird

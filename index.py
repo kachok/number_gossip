@@ -496,47 +496,219 @@ def test_evil():
         "not evil number is evil")
 
 
-'''
-for numo in range(1001):
-    if happy(numo):
-        print(numo)
-    else:
-        pass
-        #print("unhappy", numo)
-
-print(happy(0))
-print(happy(1))
-
-
-count=0
-for numo in range(10001):
-    if lucky(numo):
-        print(count, numo)
-        count=count+1
-    else:
-        pass
-        #print("unhappy", numo)
-
-count=0
-for numo in range(1, 10001):
-    if prime(numo):
-        print(count, numo)
-        count=count+1
-    else:
-        pass
-        #print("unhappy", numo)
-print(count)
-
-count=0
-for numo in range(1, 10001):
-    if triangular(numo):
-        print(count, numo)
-        count=count+1
-    else:
-        pass
-        #print("unhappy", numo)
-print(count)
 
 '''
+UNDULATING
+
+Definition: Undulating numbers are numbers of the form abababab... in base 10.
+This property is significant starting from 3-digit numbers, so we will not consider numbers below 100.
+First ten: 101, 111, 121, 131, 141, 151, 161, 171, 181, 191
+There are 180 undulating numbers below 10,000.
+'''
+
+def undulating(number):
+    """ Returns True if number is undulating """
+    if number < 100:
+        return False
+    number = str(number)
+    for idx in range(len(number)-2):
+        if number[idx] != number[idx+2]:
+            return False
+
+    return True
+
+def test_undulating():
+    """ Tests undulating method """
+    seq([101, 111, 121, 131, 141, 151, 161, 171, 181, 191], undulating, True,
+        "undulating number from test sequence is not undulating")
+    seq([1, 2, 4, 7, 8, 11, 13, 14, 16, 19, 345, 1234], undulating, False,
+        "not undulating number is undulating")
+
+'''
+TWIN
+
+Definition: A prime number is called a twin prime if there exists another prime number differing from it by 2.
+First ten: 3, 5, 7, 11, 13, 17, 19, 29, 31, 41
+There are 409 twin primes below 10,000.
+'''
+
+def twin(number):
+    """ Returns True if number is twin """
+    if number < 3:
+        return False
+
+    if not prime(number):
+        return False
+
+    return prime(number - 2) or prime(number + 2)
+
+def test_twin():
+    """ Tests twin method """
+    seq([3, 5, 7, 11, 13, 17, 19, 29, 31, 41], twin, True,
+        "twin number from test sequence is not twin")
+    seq([1, 2, 4, 8, 14, 16, 15, 21], twin, False,
+        "not twin number is twin")
 
 
+
+'''
+TETRAHEDRAL (PYRAMIDAL)
+
+Definition: A tetrahedral number is the number of balls you can put in a triangular pyramid.
+This is the space generalization of triangular and square numbers.
+First ten: 1, 4, 10, 20, 35, 56, 84, 120, 165, 220
+There are 38 tetrahedral numbers below 10,000.
+
+Formula: https://en.wikipedia.org/wiki/Tetrahedral_number
+'''
+
+def tetrahedral(number):
+    """ Returns True if number is tetrahedral """
+    # n-th tetrahedral number is n * (n + 1) * (n + 2) / 6
+
+    n = 1
+    while True:
+        p = n * (n + 1) * (n + 2) / 6
+        if p == number:
+            return True
+        elif p > number:
+            return False
+        n = n + 1
+
+def test_tetrahedral():
+    """ Tests tetrahedral method """
+    seq([1, 4, 10, 20, 35, 56, 84, 120, 165, 220], tetrahedral, True,
+        "tetrahedral number from test sequence is not tetrahedral")
+    seq([3, 5, 9, 13, 15, 17, 19], tetrahedral, False,
+        "not tetrahedral number is tetrahedral")
+
+
+'''
+PRONIC (HETEROMECIC)
+
+Definition: The number is called pronic if it is the product of two consecutive numbers.
+They are twice triangular numbers.
+First ten: 2, 6, 12, 20, 30, 42, 56, 72, 90, 110
+There are 99 pronic numbers below 10,000.
+'''
+
+def pronic(number):
+    """ Returns True if number is pronic """
+
+    root = round(math.sqrt(number))
+
+    return root * (root + 1) == number or root * (root - 1) == number
+
+def test_pronic():
+    """ Tests pronic method """
+    seq([2, 6, 12, 20, 30, 42, 56, 72, 90, 110], pronic, True,
+        "pronic number from test sequence is not pronic")
+    seq([3, 5, 9, 13, 15, 17, 19], pronic, False,
+        "not pronic number is pronic")
+
+
+'''
+PRIMORIAL
+
+Definition: The p-primorial is the product of all primes less than or equal to p. It is sometimes denoted by p#.
+Compare to compositorials and factorials.
+First ten: 2, 6, 30, 210, 2310, 30030, 510510, 9699690, 223092870, 6469693230
+There are 5 primorials below 10,000.
+'''
+
+def primorial(number):
+    """ Returns True if number is primorial """
+    product = 1
+    n = 1
+    while True:
+        if prime(n):
+            product = product * n
+
+        if product == number:
+            return True
+        elif product > number:
+            return False
+        n = n + 1
+
+
+def test_primorial():
+    """ Tests primorial method """
+    seq([2, 6, 30, 210, 2310, 30030, 510510, 9699690, 223092870, 6469693230], primorial, True,
+        "primorial number from test sequence is not primorial")
+    seq([3, 5, 9, 13, 15, 17, 19], primorial, False,
+        "not primorial number is primorial")
+
+
+'''
+PALINDROME
+
+Definition: A palindrome is a number that reads the same forward or backward.
+First ten: 1, 2, 3, 4, 5, 6, 7, 8, 9, 11
+There are 198 palindromic numbers below 10,000.
+'''
+
+def palindrome(number):
+    """ Returns True if number is palindrome """
+    number = str(number)
+    for idx in range(len(number)//2):
+        if number[idx] != number[len(number)-idx-1]:
+            return False
+
+    return True
+
+def test_palindrome():
+    """ Tests palindrome method """
+    seq([1, 2, 3, 4, 5, 6, 7, 8, 9, 11], palindrome, True,
+        "palindrome number from test sequence is not palindrome")
+    seq([15, 17, 19], palindrome, False,
+        "not palindrome number is palindrome")
+
+
+
+'''
+PALINDROMIC PRIME
+
+Definition: A palindromic prime is a prime which is a palindrome.
+In base 2 Mersenne primes are palindromic primes.
+First ten: 2, 3, 5, 7, 11, 101, 131, 151, 181, 191
+There are 20 palindromic primes below 10,000.
+'''
+
+def palindromic_prime(number):
+    """ Returns True if number is palindromic_prime """
+    return prime(number) and palindrome(number)
+
+def test_palindromic_prime():
+    """ Tests palindromic_prime method """
+    seq([2, 3, 5, 7, 11, 101, 131, 151, 181, 191], palindromic_prime, True,
+        "palindromic_prime number from test sequence is not palindromic_prime")
+    seq([15, 17, 19], palindromic_prime, False,
+        "not palindromic_prime number is palindromic_prime")
+
+
+'''
+PENTAGONAL
+
+Definition: Pentagonal numbers are of the form n(3n - 1)/2.
+Pentagonal numbers are to pentagons what triangular numbers are to triangles and square numbers are to squares.
+First ten: 1, 5, 12, 22, 35, 51, 70, 92, 117, 145
+There are 81 pentagonal numbers below 10,000.
+'''
+
+def pentagonal(number):
+    """ Returns True if number is pentagonal """
+    n = 1
+    while True:
+        p = n * (3 * n - 1) / 2
+        if p == number:
+            return True
+        elif p > number:
+            return False
+        n = n + 1
+
+def test_pentagonal():
+    """ Tests pentagonal method """
+    seq([1, 5, 12, 22, 35, 51, 70, 92, 117, 145], pentagonal, True,
+        "pentagonal number from test sequence is not pentagonal")
+    seq([3, 9, 13, 15, 17, 19], pentagonal, False,
+        "not pentagonal number is pentagonal")
