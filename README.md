@@ -16,7 +16,7 @@ Playing with numbers and their properties :notebook: :pencil2: :white_flower: (c
 - [x] cube
 - [x] deficient
 - [x] even
-- [ ] evil
+- [x] evil
 - [ ] factorial
 - [x] Fibonacci
 - [ ] Google
@@ -28,7 +28,7 @@ Playing with numbers and their properties :notebook: :pencil2: :white_flower: (c
 - [ ] Mersenne prime
 - [ ] narcissistic
 - [x] odd
-- [ ] odious
+- [x] odious
 - [ ] palindrome
 - [ ] palindromic prime
 - [ ] pentagonal

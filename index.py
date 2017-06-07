@@ -10,6 +10,14 @@ def divisors(number):
     #print(number, alld)
     return alld
 
+def binary_1(number):
+    """ Returns number of 1s in binary expansion of the number """
+    count = 0
+    while number > 0:
+        if number % 2 == 1:
+            count = count + 1
+        number = number // 2
+    return count
 
 def seq(sequence, method, val, err):
     """ Asserts/tests sequence of numbers using method """
@@ -414,8 +422,6 @@ def test_repunit():
     seq([3, 5, 7, 9, 13, 15, 17, 19], repunit, False,
         "not repunit number is repunit")
 
-
-
 '''
 LAZY CATERER
 
@@ -447,6 +453,47 @@ def test_lazy_caterer():
     seq([3, 5, 9, 13, 15, 17, 19], lazy_caterer, False,
         "not lazy_caterer number is lazy_caterer")
 
+
+'''
+ODIOUS
+
+Definition: The number n is odious if it has an odd number of 1's in its binary expansion.
+Guess what evil numbers are.
+First ten: 1, 2, 4, 7, 8, 11, 13, 14, 16, 19
+There are 5000 odious numbers below 10,000.
+'''
+
+def odious(number):
+    """ Returns True if number is odious """
+    return odd(binary_1(number))
+
+def test_odious():
+    """ Tests odious method """
+    seq([1, 2, 4, 7, 8, 11, 13, 14, 16, 19], odious, True,
+        "odious number from test sequence is not odious")
+    seq([3, 5, 6, 9, 10, 12, 15, 17, 18, 20], odious, False,
+        "not odious number is odious")
+
+
+'''
+EVIL
+
+Definition: The number n is evil if it has an even number of 1's in its binary expansion.
+Guess what odious numbers are.
+First ten: 3, 5, 6, 9, 10, 12, 15, 17, 18, 20
+There are 4999 evil numbers below 10,000.
+'''
+
+def evil(number):
+    """ Returns True if number is evil """
+    return even(binary_1(number))
+
+def test_evil():
+    """ Tests evil method """
+    seq([3, 5, 6, 9, 10, 12, 15, 17, 18, 20], evil, True,
+        "evil number from test sequence is not evil")
+    seq([1, 2, 4, 7, 8, 11, 13, 14, 16, 19], evil, False,
+        "not evil number is evil")
 
 
 '''
