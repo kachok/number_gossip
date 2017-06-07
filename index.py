@@ -296,6 +296,124 @@ def test_triangular():
 
 
 
+'''
+SQUARE
+
+Definition: The number n is a square if it is the square of an integer.
+First ten: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100
+There are 99 squares below 10,000.
+'''
+
+def square(number):
+    """ Returns True if number is square """
+    if number == 1:
+        return True
+    root = round(math.sqrt(number))
+
+    return root**2 == number
+
+def test_square():
+    """ Tests square method """
+    seq([1, 4, 9, 16, 25, 36, 49, 64, 81, 100], square, True,
+        "square number from test sequence is not square")
+    seq([8, 12, 14, 18, 20], square, False,
+        "not square number is square")
+
+
+'''
+CUBE
+
+Definition: The number n is a cube if it is the cube of an integer.
+First ten: 1, 8, 27, 64, 125, 216, 343, 512, 729, 1000
+There are 21 cube numbers below 10,000.
+'''
+
+def cube(number):
+    """ Returns True if number is cube """
+    if number == 1:
+        return True
+    root = round(number ** (1. / 3))
+
+    return root**3 == number
+
+def test_cube():
+    """ Tests cube method """
+    seq([1, 8, 27, 64, 125, 216, 343, 512, 729, 1000], cube, True,
+        "cube number from test sequence is not cube")
+    seq([4, 9, 16, 25, 36, 49, 81, 100], cube, False,
+        "not cube number is cube")
+
+
+
+'''
+ODD
+
+Definition: A number is odd if it is not divisible by 2.
+Numbers that are not odd are even. Compare with another pair -- evil and odious numbers.
+First ten: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19
+There are 5000 odd numbers below 10,000.
+'''
+
+def odd(number):
+    """ Returns True if number is odd """
+
+    return number % 2 == 1
+
+def test_odd():
+    """ Tests odd method """
+    seq([1, 3, 5, 7, 9, 11, 13, 15, 17, 19], odd, True,
+        "odd number from test sequence is not odd")
+    seq([2, 4, 6, 8, 10, 12, 14, 16, 18, 20], odd, False,
+        "not odd number is odd")
+
+
+
+'''
+EVEN
+
+Definition: A number is even if it is divisible by 2.
+Numbers that are not even are odd. Compare with another pair -- evil and odious numbers.
+First ten: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20
+There are 4999 even numbers below 10,000.
+'''
+
+def even(number):
+    """ Returns True if number is even """
+
+    return number % 2 == 0
+
+def test_even():
+    """ Tests even method """
+    seq([2, 4, 6, 8, 10, 12, 14, 16, 18, 20], even, True,
+        "even number from test sequence is not even")
+    seq([1, 3, 5, 7, 9, 11, 13, 15, 17, 19], even, False,
+        "not even number is even")
+
+'''
+REPUNIT
+
+Definition: A repunit is an integer in which every digit is one.
+The term repunit comes from combining "repeated" and "unit".
+First ten: 1, 11, 111, 1111, 11111, 111111, 1111111, 11111111, 111111111, 1111111111
+There are 4 repunits below 10,000.
+'''
+
+def repunit(number):
+    """ Returns True if number is repunit """
+    while number > 9:
+        if number % 10 != 1:
+            return False
+        else:
+            number = number // 10
+    return number == 1
+
+def test_repunit():
+    """ Tests repunit method """
+    seq([1, 11, 111, 1111, 11111, 111111, 1111111, 11111111, 111111111, 1111111111], repunit, True,
+        "repunit number from test sequence is not repunit")
+    seq([3, 5, 7, 9, 13, 15, 17, 19], repunit, False,
+        "not repunit number is repunit")
+
 
 '''
 for numo in range(1001):
