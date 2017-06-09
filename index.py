@@ -712,3 +712,162 @@ def test_pentagonal():
         "pentagonal number from test sequence is not pentagonal")
     seq([3, 9, 13, 15, 17, 19], pentagonal, False,
         "not pentagonal number is pentagonal")
+
+'''
+APOCALYPTIC POWER
+
+Definition: The number n is called an apocalyptic power if 2n contains the consecutive digits 666 (in decimal).
+First ten: 157, 192, 218, 220, 222, 224, 226, 243, 245, 247
+There are 6485 apocalyptic powers below 10,000.
+'''
+
+def apocalyptic_power(number):
+    """ Returns True if number is apocalyptic_power """
+    number = str(2 ** number)
+    for idx in range(0, len(number)-2):
+        if number[idx] == "6" and number[idx+1] == "6" and number[idx+2] == "6":
+            return True
+
+    return False
+
+def test_apocalyptic_power():
+    """ Tests apocalyptic_power method """
+    seq([157, 192, 218, 220, 222, 224, 226, 243, 245, 247], apocalyptic_power, True,
+        "apocalyptic_power number from test sequence is not apocalyptic_power")
+    seq([3, 9, 13, 15, 17, 19], apocalyptic_power, False,
+        "not apocalyptic_power number is apocalyptic_power")
+
+
+
+'''
+AUTOMORPHIC (CURIOUS)
+
+Definition: The number n is called an automorphic number if (the decimal expansion of) n2 ends with n. These numbers are also called curious.
+It is curious, how for a k-digit automorphic number n there is another automorphic number -- 10k + 1 - n. For this to work with n=1, you have to treat 1 as a zero-digit number.
+First ten: 1, 5, 6, 25, 76, 376, 625, 9376, 90625, 109376
+There are 8 automorphic numbers below 10,000.
+'''
+
+def automorphic(number):
+    """ Returns True if number is automorphic """
+    power = str(number ** 2)
+    number = str(number)
+
+    return number == power[-len(number):]
+
+
+def test_automorphic():
+    """ Tests automorphic method """
+    seq([1, 5, 6, 25, 76, 376, 625, 9376, 90625, 109376], automorphic, True,
+        "automorphic number from test sequence is not automorphic")
+    seq([3, 9, 13, 15, 17, 19, 11111], automorphic, False,
+        "not automorphic number is automorphic")
+
+
+'''
+CAKE
+
+Definition: The n-th cake number is the maximum number of pieces a (cylindrical) cake can be cut into with n (straight-plane) cuts.
+Unfortunately, not everybody gets the frosting. If you cut pizza rather than cake, you get lazy caterer's numbers.
+First ten: 2, 4, 8, 15, 26, 42, 64, 93, 130, 176
+There are 39 cake numbers below 10,000.
+
+Formula: https://en.wikipedia.org/wiki/Cake_number
+'''
+
+def cake(number):
+    """ Returns True if number is cake """
+    # n-th lazy caterer number is (n**3 + 5*n + 6) / 6
+
+    n = 1
+    while True:
+        p = (n**3 + 5*n + 6) / 6
+        if p == number:
+            return True
+        elif p > number:
+            return False
+        n = n + 1
+
+def test_cake():
+    """ Tests cake method """
+    seq([2, 4, 8, 15, 26, 42, 64, 93, 130, 176], cake, True,
+        "cake number from test sequence is not cake")
+    seq([3, 5, 9, 13, 17, 19], cake, False,
+        "not cake number is cake")
+
+
+'''
+COMPOSITE
+
+Definition: A positive integer greater than 1 that is not prime is called composite.
+Composite numbers are opposite to prime numbers.
+First ten: 4, 6, 8, 9, 10, 12, 14, 15, 16, 18
+There are 8769 composite numbers below 10,000.
+'''
+
+def composite(number):
+    """ Returns True if number is composite """
+    return not prime(number)
+
+def test_composite():
+    """ Tests composite method """
+    seq([4, 6, 8, 9, 10, 12, 14, 15, 16, 18], composite, True,
+        "composite number from test sequence is not composite")
+    seq([3, 5, 13, 17, 19], composite, False,
+        "not composite number is composite")
+
+'''
+FACTORIAL
+
+Definition: The n-th factorial is the product of the first n natural numbers.
+The factorial deserved an exclamation mark for its notation: k! = 1*2*3*...*k.
+First ten: 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800
+There are 7 factorials below 10,000.
+'''
+
+def factorial(number):
+    """ Returns True if number is factorial """
+
+    product = 1
+    idx = 1
+    while product <= number:
+        product = product * idx
+        idx = idx + 1
+        if product == number:
+            return True
+
+    return False
+
+def test_factorial():
+    """ Tests factorial method """
+    seq([1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800], factorial, True,
+        "factorial number from test sequence is not factorial")
+    seq([7, 9, 10, 11, 1111], factorial, False,
+        "not factorial number is factorial")
+
+'''
+NARCISSISTIC
+
+Definition: A k-digit number n is called narcissistic if it is equal to the sum of k-th powers of its digits. They are also called Plus Perfect numbers.
+First ten: 1, 2, 3, 4, 5, 6, 7, 8, 9, 153
+There are 16 narcissistic numbers below 10,000.
+'''
+
+def narcissistic(number):
+    """ Returns True if number is narcissistic """
+
+    num = str(number)
+    k = len(num)
+
+    total = 0
+    for idx in range(0, k):
+        total = total + int(num[idx]) ** k
+
+    return total == number
+
+def test_narcissistic():
+    """ Tests narcissistic method """
+    seq([1, 2, 3, 4, 5, 6, 7, 8, 9, 153], narcissistic, True,
+        "narcissistic number from test sequence is not narcissistic")
+    seq([10, 11, 111], narcissistic, False,
+        "not narcissistic number is narcissistic")

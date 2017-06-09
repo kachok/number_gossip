@@ -5,19 +5,19 @@ Playing with numbers and their properties :notebook: :pencil2: :white_flower: (c
 
 - [x] abundant
 - [ ] amicable
-- [ ] apocalyptic power
+- [x] apocalyptic power
 - [ ] aspiring
-- [ ] automorphic
-- [ ] cake
+- [x] automorphic
+- [x] cake
 - [ ] Carmichael
 - [ ] Catalan
-- [ ] composite
+- [x] composite
 - [ ] compositorial
 - [x] cube
 - [x] deficient
 - [x] even
 - [x] evil
-- [ ] factorial
+- [x] factorial
 - [x] Fibonacci
 - [ ] Google
 - [x] happy
@@ -26,7 +26,7 @@ Playing with numbers and their properties :notebook: :pencil2: :white_flower: (c
 - [x] lucky
 - [ ] Mersenne
 - [ ] Mersenne prime
-- [ ] narcissistic
+- [x] narcissistic
 - [x] odd
 - [x] odious
 - [x] palindrome
